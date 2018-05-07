@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<form action="recept.php" method="POST">
+<form>
     <div>
         <label for="nom">Nom : </label>
         <input type="text" name="nom" />
@@ -30,5 +30,31 @@
     </div>
     <input type=submit name="submitted" value=Ajouter />
 </form>
+<div id="result"></div>
+<script>
+    $(document).ready(function() {
+        $("submitted").click(function () {
+            $.ajax({
+                type: "POST", // Choix de la méthode pour envoi de donneés
+                url: "recept.php", // Adresse où envoyer la requête
+                data: $('form')., // Données à envoyer au serveur
+                dataType: 'html', // Type de données à transmettre au serveur (HTML, PHP, JSON, XML)
+                success: function(result){
+                    if (result.code == 'success') {
+                        $('#result').html(result);
+                        $("[type=text]").val('');
+                    }
+
+                    else{
+                        $('#result').html('pas success');
+                    }
+                },
+                error: function(result, textstatus, errorThrown){
+                    $('#result').html('erreur AJAX : '+errorThrown+" / "+$('form').serialize());
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

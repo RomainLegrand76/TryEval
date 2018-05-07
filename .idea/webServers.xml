@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2e0e8b2e-c926-464b-b5b5-3b128ecd668a" name="TryEval" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\wamp64\www\TryEval" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -28,7 +28,19 @@ else{
 }
 
 if(count($errors) === 0){
-    echo "ok";
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=tryeval', "root", "", array(
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
+        ));
+    }
+    catch (PDOException $e) {
+        echo 'Erreur de connexion : ' . $e->getMessage();
+    }
+   $sql = "INSERT INTO users(Nom, Prenom, mail, password) VALUES ('$_POST[nom]', '$_POST[prenom]', '$_POST[mail]', '$_POST[password]')";
+   $query=$pdo->prepare($sql);
+   $query->execute();
 }
 else{
     var_dump($errors);
